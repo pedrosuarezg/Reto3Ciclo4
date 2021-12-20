@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
+
 /**
  *
  * @author PSG94
@@ -23,19 +24,19 @@ public class FraganceRepositorio {
         return repository.findAll();
     }
 
-    public Optional<Fragance> getClothe(String reference) {
+    public Optional<Fragance> getFragance (String reference) {
         return repository.findById(reference);
     }
-    public Fragance create(Fragance clothe) {
-        return repository.save(clothe);
+    public Fragance create(Fragance fragance) {
+        return repository.save(fragance);
     }
 
-    public void update(Fragance clothe) {
-        repository.save(clothe);
+    public void update(Fragance fragance) {
+        repository.save(fragance);
     }
 
-    public void delete(Fragance clothe) {
-        repository.delete(clothe);
+    public void delete(Fragance fragance) {
+        repository.delete(fragance);
     }
 }
 

@@ -18,33 +18,33 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 public class FraganceController {
     @Autowired
-    private FraganceService accessoryService;
+    private FraganceService fraganceService;
 
     @GetMapping("/all")
     public List<Fragance> getAll() {
-        return accessoryService.getAll();
+        return fraganceService.getAll();
     }
 
     @GetMapping("/{reference}")
-    public Optional<Fragance> getClothe(@PathVariable("reference") String reference) {
-        return accessoryService.getClothe(reference);
+    public Optional<Fragance> getFragance(@PathVariable("reference") String reference) {
+        return fraganceService.getFragance(reference);
     }
 
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public Fragance create(@RequestBody Fragance gadget) {
-        return accessoryService.create(gadget);
+    public Fragance create(@RequestBody Fragance fragance) {
+        return fraganceService.create(fragance);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Fragance update(@RequestBody Fragance gadget) {
-        return accessoryService.update(gadget);
+    public Fragance update(@RequestBody Fragance fragance) {
+        return fraganceService.update(fragance);
     }
 
     @DeleteMapping("/{reference}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("reference") String reference) {
-        return accessoryService.delete(reference);
+        return fraganceService.delete(reference);
     }
 }

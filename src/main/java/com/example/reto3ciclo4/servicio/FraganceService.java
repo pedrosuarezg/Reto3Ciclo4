@@ -14,64 +14,68 @@ import java.util.Optional;
 @Service
 public class FraganceService {
     @Autowired
-    private FraganceRepositorio clotheRepository;
+    private FraganceRepositorio fraganceRepositorio;
 
     public List<Fragance> getAll() {
-        return clotheRepository.getAll();
+        return fraganceRepositorio.getAll();
     }
 
-    public Optional<Fragance> getClothe(String reference) {
-        return clotheRepository.getClothe(reference);
+    public Optional<Fragance> getFragance(String reference) {
+        return fraganceRepositorio.getFragance(reference);
     }
 
-    public Fragance create(Fragance accesory) {
-        if (accesory.getReference() == null) {
-            return accesory;
+    public Fragance create(Fragance fragance) {
+        if (fragance.getReference() == null) {
+            return fragance;
         } else {
-            return clotheRepository.create(accesory);
+            return fraganceRepositorio.create(fragance);
         }
     }
 
-    public Fragance update(Fragance accesory) {
+    public Fragance update(Fragance fragance) {
 
-        if (accesory.getReference() != null) {
-            Optional<Fragance> accesoryDb = clotheRepository.getClothe(accesory.getReference());
-            if (!accesoryDb.isEmpty()) {
+        if (fragance.getReference() != null) {
+            Optional<Fragance> fraganceDb = fraganceRepositorio.getFragance(fragance.getReference());
+            if (!fraganceDb.isEmpty()) {
 
-                if (accesory.getBrand()!= null) {
-                    accesoryDb.get().setBrand(accesory.getBrand());
-                }
-
-                if (accesory.getCategory() != null) {
-                    accesoryDb.get().setCategory(accesory.getCategory());
+                if (fragance.getBrand()!= null) {
+                    fraganceDb.get().setBrand(fragance.getBrand());
                 }
 
-                if (accesory.getDescription() != null) {
-                    accesoryDb.get().setDescription(accesory.getDescription());
+                if (fragance.getCategory() != null) {
+                    fraganceDb.get().setCategory(fragance.getCategory());
                 }
-                if (accesory.getPrice() != 0.0) {
-                    accesoryDb.get().setPrice(accesory.getPrice());
+
+                if (fragance.getPresentation() != null) {
+                    fraganceDb.get().setPresentation(fragance.getPresentation());
                 }
-                if (accesory.getQuantity() != 0) {
-                    accesoryDb.get().setQuantity(accesory.getQuantity());
+
+                if (fragance.getDescription() != null) {
+                    fraganceDb.get().setDescription(fragance.getDescription());
                 }
-                if (accesory.getPhotography() != null) {
-                    accesoryDb.get().setPhotography(accesory.getPhotography());
+                if (fragance.getPrice() != 0.0) {
+                    fraganceDb.get().setPrice(fragance.getPrice());
                 }
-                accesoryDb.get().setAvailability(accesory.isAvailability());
-                clotheRepository.update(accesoryDb.get());
-                return accesoryDb.get();
+                if (fragance.getQuantity() != 0) {
+                    fraganceDb.get().setQuantity(fragance.getQuantity());
+                }
+                if (fragance.getPhotography() != null) {
+                    fraganceDb.get().setPhotography(fragance.getPhotography());
+                }
+                fraganceDb.get().setAvailability(fragance.isAvailability());
+                fraganceRepositorio.update(fraganceDb.get());
+                return fraganceDb.get();
             } else {
-                return accesory;
+                return fragance;
             }
         } else {
-            return accesory;
+            return fragance;
         }
     }
 
     public boolean delete(String reference) {
-        Boolean aBoolean = getClothe(reference).map(accesory -> {
-            clotheRepository.delete(accesory);
+        Boolean aBoolean = getFragance(reference).map(fragance -> {
+            fraganceRepositorio.delete(fragance);
             return true;
         }).orElse(false);
         return aBoolean;
